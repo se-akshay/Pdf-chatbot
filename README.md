@@ -54,7 +54,7 @@ Prerequisites
 - A Google credentials/API key for Gemini embeddings
 - Pinecone API key and an index created with the correct `dimension`
 
-1. Backend (latest - `version5`)
+1. Backend (latest - `version1`)
 
 ```bash
 cd Backend/version5
@@ -101,21 +101,11 @@ Notes
 
 1. File received by backend upload endpoint (PDF or `.json`).
 2. Text extraction and chunking (RecursiveCharacterTextSplitter).
-3. Embeddings generated via Google Generative AI (Gemini text-embedding-004).
+3. Embeddings generated via Google Generative AI (Gemini text-embedding-001).
 4. Vector upsert to Pinecone (index name from `PINECONE_INDEX_NAME`).
 
 The code performs validation so empty or mismatched-dimensional vectors are rejected before being sent to Pinecone.
 
----
-
-
-## Development notes & extension ideas
-
-- Provider fallback: add `EMBEDDINGS_PROVIDER` env flag and implement OpenAI or local fallback.
-- Batch upserts: switch from `PineconeStore.fromDocuments` to a manual embed → validate → `pineconeIndex.upsert()` flow for per-vector error handling.
-- Streaming responses: update LLM calls to use streaming where supported so the UI can show progressive answers.
-
----
 
 ## Contributing
 
